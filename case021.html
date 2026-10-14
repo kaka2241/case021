@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Case sheet</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+:root{--bg:#edf1f4;--card:#fff;--ink:#14232b;--mute:#5d6d76;--line:#d9e1e6;--field:#f6f9fb;--red:#a4161a;--soft:#fdeded;--band:#7f1218;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1519;--card:#16222a;--ink:#e8eff2;--mute:#94a5ae;--line:#2a3a42;--field:#0f1a20;--red:#ff8383;--soft:#2c1a1c;--band:#5b0f14;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e1519;--card:#16222a;--ink:#e8eff2;--mute:#94a5ae;--line:#2a3a42;--field:#0f1a20;--red:#ff8383;--soft:#2c1a1c;--band:#5b0f14;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Manrope","Segoe UI",system-ui,sans-serif}
+.band{background:var(--band);color:#fff;padding:26px 16px 30px}
+.band>div{max-width:860px;margin:0 auto;display:flex;flex-wrap:wrap;gap:18px 30px;justify-content:space-between;align-items:flex-end}
+.band h1{margin:0;font-size:1.9rem;line-height:1.1;font-weight:800;letter-spacing:-.02em}
+.band p{margin:6px 0 0;opacity:.85}
+.meta{display:flex;gap:12px}
+.meta label{display:block;font-size:.8rem;opacity:.85}
+.meta input{display:block;margin-top:3px;width:150px;padding:8px 10px;border:0;border-radius:8px;background:rgba(255,255,255,.14);color:#fff;font:inherit;font-weight:600;color-scheme:dark}
+.meta input::placeholder{color:rgba(255,255,255,.55)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+nav div{max-width:860px;margin:0 auto;padding:10px 16px;display:flex;gap:8px;overflow-x:auto}
+nav a{white-space:nowrap;text-decoration:none;color:var(--ink);font-weight:600;font-size:.92rem;padding:7px 14px;border-radius:20px;background:var(--card);border:1px solid var(--line)}
+nav a:hover{border-color:var(--red);color:var(--red)}
+main{max-width:860px;margin:0 auto;padding:18px 16px 50px}
+section{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--red);border-radius:14px;padding:20px 20px 22px;margin-bottom:18px}
+.sh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:14px}
+h2{margin:0;font-size:1.25rem;font-weight:800;letter-spacing:-.01em}
+.cnt{font-size:.85rem;font-weight:700;color:var(--mute);background:var(--field);padding:3px 10px;border-radius:12px;white-space:nowrap}
+.cnt.on{color:var(--red);background:var(--soft)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}
+.wide{grid-column:1/-1}
+.fld{display:block}
+.fld>span{display:block;font-size:.85rem;font-weight:700;color:var(--mute);margin-bottom:5px}
+input,textarea{width:100%;font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+textarea{display:block;resize:none;overflow:hidden;line-height:1.55}
+input:focus,textarea:focus{outline:none;border-color:var(--red);box-shadow:0 0 0 3px var(--soft)}
+.vit{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}
+.vit label{display:block;text-align:center;background:var(--field);border:1px solid var(--line);border-radius:12px;padding:10px 6px}
+.vit b{display:block;font-size:.95rem}
+.vit small{display:block;color:var(--mute);font-size:.75rem;margin-bottom:6px}
+.vit input{text-align:center;font-weight:700;font-size:1.1rem;background:var(--card);padding:8px 4px}
+.sub{margin:18px 0 8px;font-size:.95rem;font-weight:800;color:var(--red)}
+.tools{max-width:860px;margin:0 auto;padding:0 16px 40px;display:flex;gap:10px;flex-wrap:wrap}
+button{font:inherit;font-weight:700;padding:11px 18px;border-radius:10px;border:1px solid var(--red);background:transparent;color:var(--red);cursor:pointer}
+button.main{background:var(--red);color:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) button.main{color:#2a0f0d}}
+:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+@media (max-width:600px){.grid{grid-template-columns:1fr}.vit{grid-template-columns:repeat(2,1fr)}.band h1{font-size:1.6rem}section{padding:16px 14px 18px}}
+@media print{nav,.tools,.cnt,#saved{display:none}body{background:#fff;color:#000}.band{background:#fff;color:#000;border-bottom:3px solid #a4161a;padding:0 0 10px}.meta input{background:none;color:#000;border-bottom:1px solid #999;border-radius:0}.band p{opacity:1}section{break-inside:avoid;border:1px solid #bbb;border-left:5px solid #a4161a}input,textarea{border-color:#bbb;background:#fff;color:#000}main{padding:12px 0}}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin:4px 0 6px}
+.case{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--field);margin-top:8px}
+.case b{display:block}
+.case small{color:var(--mute)}
+.case>div:last-child{display:flex;gap:8px}
+.case button{padding:7px 14px;font-size:.9rem}
+.empty{color:var(--mute);margin:8px 0 0}
+@page{margin:12mm}
+</style>
+</head>
+<body>
+<header class="band"><div>
+<div><h1>Hawler Medical University</h1><p>College of Medicine, Department of Medicine</p></div>
+<div class="meta">
+<label>Case sheet no<input data-l="Case Sheet No" placeholder="No."></label>
+<label>Date<input type="date" data-l="Date"></label>
+</div></div></header>
+<nav><div>
+<a href="#saved">Saved cases</a><a href="#patient">Patient</a><a href="#complaint">Complaint and illness</a><a href="#past">Past and family</a><a href="#review">Systemic review</a><a href="#exam">Examination</a>
+</div></nav>
+<main>
+
+<section id="saved"><div class="sh"><h2>Saved cases</h2><span class="cnt on" id="savedcount"></span></div>
+<p class="empty">Cases stay in this browser on this device.</p>
+<div class="row"><button class="main" id="save">Save case</button><button id="new">New case</button></div>
+<div id="list"></div></section>
+
+<section id="patient"><div class="sh"><h2>Patient details</h2><span class="cnt"></span></div>
+<div class="grid">
+<label class="fld"><span>Patient name</span><input data-l="Patient Name"></label>
+<label class="fld"><span>Age</span><input data-l="Age"></label>
+<label class="fld"><span>Gender</span><input data-l="Gender"></label>
+<label class="fld"><span>Marital state</span><input data-l="Marital State"></label>
+<label class="fld wide"><span>Address</span><input data-l="Address"></label>
+<label class="fld"><span>Occupation</span><input data-l="Occupation"></label>
+<label class="fld"><span>Date of admission</span><input type="date" data-l="Date of Admission"></label>
+</div></section>
+
+<section id="complaint"><div class="sh"><h2>Complaint and illness</h2><span class="cnt"></span></div>
+<div class="grid">
+<label class="fld wide"><span>History of chief complaint and duration</span><textarea rows="2" data-l="History of Chief complain & duration"></textarea></label>
+<label class="fld wide"><span>History of present illness</span><textarea rows="7" data-l="History of present illness"></textarea></label>
+</div></section>
+
+<section id="past"><div class="sh"><h2>Past and family history</h2><span class="cnt"></span></div>
+<div class="grid">
+<label class="fld"><span>Past medical history: condition</span><textarea rows="3" data-l="Past Medical History: Condition"></textarea></label>
+<label class="fld"><span>Past medical history: medications</span><textarea rows="3" data-l="Past Medical History: Medications"></textarea></label>
+<label class="fld wide"><span>Past surgical history</span><textarea rows="2" data-l="Past surgical history"></textarea></label>
+<label class="fld wide"><span>Drug history</span><textarea rows="2" data-l="Drug history"></textarea></label>
+<label class="fld wide"><span>Family history</span><textarea rows="2" data-l="Family History"></textarea></label>
+<label class="fld wide"><span>Socioeconomic history</span><textarea rows="2" data-l="Socioeconomic History"></textarea></label>
+</div></section>
+
+<section id="review"><div class="sh"><h2>Systemic review</h2><span class="cnt"></span></div>
+<div class="grid">
+<label class="fld"><span>Skin</span><textarea rows="2" data-l="Skin"></textarea></label>
+<label class="fld"><span>Cardiovascular system</span><textarea rows="2" data-l="Cardiovascular System"></textarea></label>
+<label class="fld"><span>Respiratory system</span><textarea rows="2" data-l="Respiratory System"></textarea></label>
+<label class="fld"><span>GIT system</span><textarea rows="2" data-l="GIT System"></textarea></label>
+<label class="fld"><span>GUT system</span><textarea rows="2" data-l="GUT system"></textarea></label>
+<label class="fld"><span>Musculoskeletal system</span><textarea rows="2" data-l="Musculoskeletal System"></textarea></label>
+<label class="fld wide"><span>Psychiatric</span><textarea rows="2" data-l="Psychiatric"></textarea></label>
+</div></section>
+
+<section id="exam"><div class="sh"><h2>Examination</h2><span class="cnt"></span></div>
+<div class="vit">
+<label><b>PR</b><small>beats/min</small><input data-l="PR"></label>
+<label><b>RR</b><small>breaths/min</small><input data-l="RR"></label>
+<label><b>BP</b><small>mmHg</small><input data-l="BP"></label>
+<label><b>Temp</b><small>°C</small><input data-l="Temp"></label>
+<label><b>SpO2</b><small>%</small><input data-l="Spo2"></label>
+</div>
+<div class="grid">
+<label class="fld wide"><span>General</span><textarea rows="2" data-l="General"></textarea></label>
+<label class="fld wide"><span>Physical examinations</span><textarea rows="8" data-l="Physical Examinations"></textarea></label>
+</div></section>
+</main>
+
+<div class="tools">
+<button class="main" id="pdf">Download PDF</button>
+<button id="print">Print or save as PDF</button>
+<button id="copy">Copy text</button>
+<button id="dl">Download text</button>
+<button id="clear">Clear</button>
+</div>
+
+<script>
+const els=[...document.querySelectorAll("[data-l]")],KEY="case-sheet-fields-v2";
+function fit(t){if(t.tagName!=="TEXTAREA")return;t.style.height="auto";t.style.height=(t.scrollHeight+2)+"px"}
+function counts(){document.querySelectorAll("section").forEach(s=>{const f=[...s.querySelectorAll("[data-l]")],n=f.filter(e=>e.value.trim()).length,c=s.querySelector(".cnt");if(!c||s.id==="saved")return;c.textContent=n+" of "+f.length+" filled";c.classList.toggle("on",n>0)})}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(els.map(e=>e.value)))}catch(x){}}
+function load(){try{const d=JSON.parse(localStorage.getItem(KEY)||"[]");els.forEach((e,i)=>{if(d[i])e.value=d[i]})}catch(x){}els.forEach(fit);counts()}
+els.forEach(e=>e.addEventListener("input",()=>{fit(e);counts();save()}));load();
+function text(){return els.map(e=>{const v=e.value.trim();if(!v)return"";const l=e.dataset.l;return e.tagName==="TEXTAREA"?l+":\n"+v:l+": "+v}).filter(Boolean).join("\n\n")}
+document.getElementById("print").onclick=()=>{els.forEach(fit);window.print()};
+document.getElementById("copy").onclick=async e=>{const b=e.target,o=b.textContent;try{await navigator.clipboard.writeText(text());b.textContent="Copied"}catch(x){b.textContent="Copy failed"}setTimeout(()=>b.textContent=o,1500)};
+document.getElementById("dl").onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text()],{type:"text/plain"}));a.download="case-sheet.txt";document.body.appendChild(a);a.click();a.remove()};
+document.getElementById("clear").onclick=()=>{if(!confirm("Clear the whole sheet?"))return;els.forEach(e=>{e.value="";fit(e)});counts();save()};
+const CK="case-sheet-saved-cases";let cur=null;
+function getCases(){try{return JSON.parse(localStorage.getItem(CK)||"{}")}catch(x){return{}}}
+function putCases(c){try{localStorage.setItem(CK,JSON.stringify(c));return true}catch(x){return false}}
+function esc(s){return s.replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]))}
+function val(l){return els.find(e=>e.dataset.l===l).value.trim()}
+function caseName(){const p=val("Patient Name"),n=val("Case Sheet No");return [p,n&&"No. "+n].filter(Boolean).join(", ")||"Untitled case"}
+function render(){const c=getCases(),ids=Object.keys(c).sort((a,b)=>c[b].saved-c[a].saved);
+document.getElementById("savedcount").textContent=ids.length+" saved";
+document.getElementById("list").innerHTML=ids.length?ids.map(i=>`<div class="case"><div><b>${esc(c[i].name)}</b><small>Saved ${new Date(c[i].saved).toLocaleString()}</small></div><div><button data-pdf="${i}">PDF</button><button data-open="${i}">Open</button><button data-del="${i}">Delete</button></div></div>`).join(""):'<p class="empty">No saved cases yet. Fill in the sheet and press Save case.</p>'}
+document.getElementById("save").onclick=e=>{const c=getCases(),id=cur&&c[cur]?cur:"c"+Date.now();c[id]={name:caseName(),saved:Date.now(),values:els.map(x=>x.value)};cur=id;const b=e.target,o=b.textContent;b.textContent=putCases(c)?"Saved":"Could not save";render();setTimeout(()=>b.textContent=o,1500)};
+document.getElementById("new").onclick=()=>{if(els.some(x=>x.value.trim())&&!confirm("Start a new case? Unsaved changes on this sheet will be lost."))return;cur=null;els.forEach(x=>{x.value="";fit(x)});counts();save();window.scrollTo({top:0})};
+document.getElementById("list").onclick=e=>{const b=e.target.closest("button");if(!b)return;const c=getCases();
+if(b.dataset.pdf){const k=c[b.dataset.pdf];if(k)dlPDF(k.values,k.name);return}
+if(b.dataset.open){const k=c[b.dataset.open];if(!k)return;if(els.some(x=>x.value.trim())&&cur!==b.dataset.open&&!confirm("Open this case? Unsaved changes on the current sheet will be lost."))return;els.forEach((x,i)=>{x.value=k.values[i]||"";fit(x)});cur=b.dataset.open;counts();save();document.getElementById("patient").scrollIntoView()}
+else if(b.dataset.del){if(!confirm("Delete this saved case?"))return;delete c[b.dataset.del];if(cur===b.dataset.del)cur=null;putCases(c);render()}};
+function makePDF(vals){
+const PW=595,PH=842,M=44,LW=PW-2*M,RED="0.84 0.12 0.12 rg",cx=document.createElement("canvas").getContext("2d"),pages=[];let ops=[],y=PH-M;
+const get=l=>{const i=els.findIndex(e=>e.dataset.l===l);return i<0?"":String(vals[i]||"")};
+const san=s=>String(s).replace(/\t/g," ").replace(/[^\x20-\x7E\xA0-\xFF]/g,"?");
+const esc=s=>san(s).replace(/\\/g,"\\\\").replace(/\(/g,"\\(").replace(/\)/g,"\\)");
+const wid=(s,sz,b)=>{cx.font=(b?"bold ":"")+sz+"px Arial, Helvetica, sans-serif";return cx.measureText(s).width};
+function wrap(t,sz,b){const out=[];String(t).split(/\r?\n/).forEach(p=>{p=san(p);let ln="";for(const w of p.split(" ")){const tr=ln?ln+" "+w:w;if(wid(tr,sz,b)<=LW){ln=tr}else{if(ln)out.push(ln);ln=w;while(wid(ln,sz,b)>LW){let k=ln.length-1;while(k>1&&wid(ln.slice(0,k),sz,b)>LW)k--;out.push(ln.slice(0,k));ln=ln.slice(k)}}}out.push(ln)});return out}
+function need(h){if(y-h<M){pages.push(ops.join("\n"));ops=[];y=PH-M}}
+function line(s,sz,b,col,lh){lh=lh||sz*1.4;need(lh);y-=lh;ops.push("BT /"+(b?"F2":"F1")+" "+sz+" Tf "+(col||"0 g")+" "+M+" "+y.toFixed(1)+" Td ("+esc(s)+") Tj ET")}
+function sec(t){need(48);y-=12;line(t,13,true,RED,18);ops.push("0.84 0.12 0.12 RG 0.8 w "+M+" "+(y-5).toFixed(1)+" m "+(PW-M)+" "+(y-5).toFixed(1)+" l S");y-=6}
+function field(l){const v=get(l).trim();need(34);line(l,9.5,true,"0.35 g",14);if(v)wrap(v,11,false).forEach(s=>line(s,11,false,"0 g",15));else line("-",11,false,"0.6 g",15);y-=5}
+["Hawler Medical University/","College of Medicine/","Department of Medicine."].forEach(s=>line(s,15,true,"0 g",20));
+y-=4;field("Case Sheet No");field("Date");
+sec("Patient details");["Patient Name","Age","Gender","Marital State","Address","Occupation","Date of Admission"].forEach(field);
+sec("Complaint and illness");["History of Chief complain & duration","History of present illness"].forEach(field);
+sec("Past and family history");["Past Medical History: Condition","Past Medical History: Medications","Past surgical history","Drug history","Family History","Socioeconomic History"].forEach(field);
+sec("Systemic review");["Skin","Cardiovascular System","Respiratory System","GIT System","GUT system","Musculoskeletal System","Psychiatric"].forEach(field);
+sec("Examination");need(34);line("Vital signs",9.5,true,"0.35 g",14);
+line(["PR","RR","BP","Temp","Spo2"].map(l=>l+": "+(get(l).trim()||"-")).join("      "),11,false,"0 g",15);y-=5;
+field("General");field("Physical Examinations");
+pages.push(ops.join("\n"));
+const objs=[];const add=s=>{objs.push(s);return objs.length};
+add("<< /Type /Catalog /Pages 2 0 R >>");add("");
+add("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>");
+add("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>");
+const kids=[];
+pages.forEach((p,i)=>{const body=p+"\nBT /F1 8 Tf 0.5 g "+(PW/2-28)+" 22 Td (Page "+(i+1)+" of "+pages.length+") Tj ET";
+const cid=add("<< /Length "+body.length+" >>\nstream\n"+body+"\nendstream");
+kids.push(add("<< /Type /Page /Parent 2 0 R /MediaBox [0 0 "+PW+" "+PH+"] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents "+cid+" 0 R >>")+" 0 R")});
+objs[1]="<< /Type /Pages /Kids ["+kids.join(" ")+"] /Count "+kids.length+" >>";
+let out="%PDF-1.4\n";const offs=[];
+objs.forEach((o,i)=>{offs.push(out.length);out+=(i+1)+" 0 obj\n"+o+"\nendobj\n"});
+const xr=out.length;
+out+="xref\n0 "+(objs.length+1)+"\n0000000000 65535 f \n"+offs.map(o=>String(o).padStart(10,"0")+" 00000 n \n").join("")+"trailer\n<< /Size "+(objs.length+1)+" /Root 1 0 R >>\nstartxref\n"+xr+"\n%%EOF";
+const u=new Uint8Array(out.length);for(let i=0;i<out.length;i++)u[i]=out.charCodeAt(i)&255;return u}
+function dlPDF(vals,name){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([makePDF(vals)],{type:"application/pdf"}));a.download=(name||"case-sheet").replace(/[^\w\-]+/g,"_")+".pdf";document.body.appendChild(a);a.click();a.remove()}
+document.getElementById("pdf").onclick=()=>dlPDF(els.map(e=>e.value),caseName());
+render();
+</script>
+</body>
+</html>
